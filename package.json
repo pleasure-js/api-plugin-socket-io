@@ -1,5 +1,5 @@
 {
-  "name": "pleasure-bundle-boilerplate",
+  "name": "pleasure-api-plugin-socket-io",
   "version": "1.0.0-beta",
   "description": "pleasure rollup bundler boilerplate",
   "main": "dist/pleasure-api-plugin-socket-io.js",
