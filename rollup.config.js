@@ -41,15 +41,15 @@ const banner = `/*!
 
 export default [
   {
-    input: 'src/lib/my-lib.js',
+    input: 'src/pleasure-api-plugin-socket-io.js',
     output: [
       {
-        file: 'dist/my-lib.js',
+        file: 'dist/pleasure-api-plugin-socket-io.js',
         format: 'cjs',
         banner
       },
       {
-        file: 'dist/my-lib.esm.js',
+        file: 'dist/pleasure-api-plugin-socket-io.esm.js',
         format: 'esm',
         banner
       }

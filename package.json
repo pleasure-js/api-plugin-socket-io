@@ -2,7 +2,8 @@
   "name": "pleasure-bundle-boilerplate",
   "version": "1.0.0-beta",
   "description": "pleasure rollup bundler boilerplate",
-  "main": "index.js",
+  "main": "dist/pleasure-api-plugin-socket-io.js",
+  "module": "dist/pleasure-api-plugin-socket-io.esm.js",
   "author": "Martin Rafael Gonzalez <tin@devtin.io>",
   "license": "MIT",
   "scripts": {
@@ -19,5 +20,12 @@
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "socket.io": "^2.2.0"
+  },
+  "peerDependencies": {
+    "pleasure-api": "keepwondering/pleasure-api"
   }
 }
