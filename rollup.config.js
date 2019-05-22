@@ -2,7 +2,7 @@ import path from 'path'
 import commonjs from 'rollup-plugin-commonjs'
 import json from 'rollup-plugin-json'
 import alias from 'rollup-plugin-alias'
-import resolve from 'rollup-plugin-node-resolve'
+// import resolve from 'rollup-plugin-node-resolve'
 import minify from 'minify'
 import { name, version, author } from './package.json'
 
@@ -30,7 +30,7 @@ const plugins = [
     only: [/pleasure-/]
   }),
 */
-  minify()
+ // minify()
 ]
 
 const banner = `/*!
