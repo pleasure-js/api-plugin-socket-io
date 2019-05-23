@@ -1,5 +1,5 @@
 /*!
- * pleasure-bundle-boilerplate v1.0.0-beta
+ * pleasure-api-plugin-socket-io v1.0.0-beta
  * (c) 2018-2019 Martin Rafael Gonzalez <tin@devtin.io>
  * Released under the MIT License.
  */
