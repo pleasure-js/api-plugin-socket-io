@@ -18,6 +18,7 @@ export default {
   name: 'io',
   config,
   init ({ pleasureEntityMap, pluginsApi, server, config, getConfig }) {
+    // console.log(`init socket.io`)
     PleasureEntityMap = pleasureEntityMap
     jwt = pluginsApi.jwt
 
@@ -30,6 +31,7 @@ export default {
     io.use(async (socket, next) => {
       // wait until initialized
       if (!PleasureEntityMap) {
+        // console.error(`socket connection before PleasureEntityMap`)
         return next(unauthorized)
       }
 
@@ -37,18 +39,23 @@ export default {
 
       if (socket.handshake.headers['authorization']) {
         const jwtToken = socket.handshake.headers['authorization'].split(' ')[1]
+        // console.log({ jwtToken })
         let valid = false
 
         try {
+          // console.log(`validating token....`)
           valid = await jwt.isValidSession(jwtToken)
-        } catch (err) {}
+          // console.log(`token is valid?`, valid)
+        } catch (err) {
+          // console.log(`error validating token!!!! ${ jwtToken }`, err.message)
+        }
+
         if (!valid) {
-          console.log(`invalid token!!!!`)
           return next(unauthorized)
         }
 
         user = await jwt.verify(jwtToken)
-        next()
+        // next()
       }
 
       let userGroup
@@ -62,6 +69,7 @@ export default {
       socket.join('$global')
 
       if (user) {
+        // console.log(`socket:io connecting`, `$user-${ user._id }`)
         socket.join(`$user-${ user._id }`)
       }
 
@@ -74,6 +82,7 @@ export default {
         })
       }
 
+      // console.log(`receiving socket.io connection!`)
       return next()
     })
   },
