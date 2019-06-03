@@ -26,6 +26,6 @@
     "socket.io": "^2.2.0"
   },
   "peerDependencies": {
-    "pleasure-api": "keepwondering/pleasure-api"
+    "pleasure-api": "keepwondering/pleasure-api#v1-beta"
   }
 }
