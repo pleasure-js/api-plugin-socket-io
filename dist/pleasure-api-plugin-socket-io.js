@@ -26,8 +26,7 @@ let io;
 var pleasureApiPluginSocketIo = {
   name: 'io',
   config,
-  init ({ pleasureEntityMap, pluginsApi, server, config, getConfig }) {
-    // console.log(`init socket.io`)
+  prepare ({ pleasureEntityMap, pluginsApi, server, config, getConfig }) {
     PleasureEntityMap = pleasureEntityMap;
     jwt = pluginsApi.jwt;
 
@@ -40,7 +39,7 @@ var pleasureApiPluginSocketIo = {
     io.use(async (socket, next) => {
       // wait until initialized
       if (!PleasureEntityMap) {
-        // console.error(`socket connection before PleasureEntityMap`)
+        console.error(`socket connection before PleasureEntityMap`);
         return next(unauthorized)
       }
 
@@ -56,10 +55,11 @@ var pleasureApiPluginSocketIo = {
           valid = await jwt.isValidSession(jwtToken);
           // console.log(`token is valid?`, valid)
         } catch (err) {
-          // console.log(`error validating token!!!! ${ jwtToken }`, err.message)
+          console.log(`error validating token!!!! ${ jwtToken }`, err.message);
         }
 
         if (!valid) {
+          console.log(`invalid token`, jwtToken);
           return next(unauthorized)
         }
 
