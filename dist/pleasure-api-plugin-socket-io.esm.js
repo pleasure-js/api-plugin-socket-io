@@ -6,6 +6,7 @@
 import socketIo from 'socket.io';
 import castArray from 'lodash/castArray';
 import get from 'lodash/get';
+import { getConfig } from 'pleasure-utils';
 
 let PleasureEntityMap;
 let jwt;
@@ -22,11 +23,13 @@ let io;
 var pleasureApiPluginSocketIo = {
   name: 'io',
   config,
-  prepare ({ pleasureEntityMap, pluginsApi, server, config, getConfig }) {
+  prepare ({ pleasureEntityMap, pluginsApi, server, config, getConfig: getConfig$1 }) {
+    const { debug } = getConfig();
+
     PleasureEntityMap = pleasureEntityMap;
     jwt = pluginsApi.jwt;
 
-    const { prefix } = getConfig();
+    const { prefix } = getConfig$1();
     const { getDeliveryGroup } = config;
 
     io = socketIo(server, { path: `${ prefix }-socket` });
@@ -35,7 +38,7 @@ var pleasureApiPluginSocketIo = {
     io.use(async (socket, next) => {
       // wait until initialized
       if (!PleasureEntityMap) {
-        console.error(`socket connection before PleasureEntityMap`);
+        console.error(`Attempting to connect to socket before API ready (PleasureEntityMap)`);
         return next(unauthorized)
       }
 
@@ -68,13 +71,14 @@ var pleasureApiPluginSocketIo = {
       try {
         userGroup = getDeliveryGroup(user);
       } catch (err) {
+        console.log(`error getting delivery group`, err);
         return next(err)
       }
 
       socket.join('$global');
 
       if (user) {
-        // console.log(`socket:io connecting`, `$user-${ user._id }`)
+        debug && console.log(`socket:io connecting`, `$user-${ user._id }`);
         socket.join(`$user-${ user._id }`);
       }
 
@@ -83,7 +87,10 @@ var pleasureApiPluginSocketIo = {
           if (userGroups.indexOf(group) < 0) {
             userGroups.push(group);
           }
-          socket.join(group);
+          debug && console.log(`socket.join`, group);
+          socket.join(group, () => {
+            debug && console.log(`socket rooms ${ socket.id }`, Object.keys(socket.rooms));
+          });
         });
       }
 
