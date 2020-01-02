@@ -26,6 +26,6 @@
     "socket.io": "^2.2.0"
   },
   "peerDependencies": {
-    "@pleasure-js/api": "git@github.com:pleasure-js/api.git#v1-beta"
+    "@pleasure-js/api": "git+ssh://git@github.com:pleasure-js/api.git#v1-beta"
   }
 }
