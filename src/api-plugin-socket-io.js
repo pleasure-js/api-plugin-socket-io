@@ -1,7 +1,7 @@
 import socketIo from 'socket.io'
 import castArray from 'lodash/castArray'
 import get from 'lodash/get'
-import { getConfig as getLocalConfig } from 'pleasure-utils'
+import { getConfig as getLocalConfig } from '@pleasure-js/utils'
 
 let PleasureEntityMap
 let jwt

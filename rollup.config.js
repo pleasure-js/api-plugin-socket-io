@@ -3,7 +3,6 @@ import commonjs from 'rollup-plugin-commonjs'
 import json from 'rollup-plugin-json'
 import alias from 'rollup-plugin-alias'
 // import resolve from 'rollup-plugin-node-resolve'
-import minify from 'minify'
 import { name, version, author } from './package.json'
 
 const fromSrc = (...paths) => {
@@ -41,15 +40,15 @@ const banner = `/*!
 
 export default [
   {
-    input: 'src/pleasure-api-plugin-socket-io.js',
+    input: 'src/api-plugin-socket-io.js',
     output: [
       {
-        file: 'dist/pleasure-api-plugin-socket-io.js',
+        file: 'dist/api-plugin-socket-io.js',
         format: 'cjs',
         banner
       },
       {
-        file: 'dist/pleasure-api-plugin-socket-io.esm.js',
+        file: 'dist/api-plugin-socket-io.esm.js',
         format: 'esm',
         banner
       }

@@ -1,6 +1,6 @@
 /*!
- * pleasure-api-plugin-socket-io v1.0.0-beta
- * (c) 2018-2019 Martin Rafael Gonzalez <tin@devtin.io>
+ * @pleasure-js/api-plugin-socket-io v1.0.0-beta
+ * (c) 2018-2020 Martin Rafael Gonzalez <tin@devtin.io>
  * Released under the MIT License.
  */
 'use strict';
@@ -10,7 +10,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var socketIo = _interopDefault(require('socket.io'));
 var castArray = _interopDefault(require('lodash/castArray'));
 var get = _interopDefault(require('lodash/get'));
-var pleasureUtils = require('pleasure-utils');
+var utils = require('@pleasure-js/utils');
 
 let PleasureEntityMap;
 let jwt;
@@ -24,11 +24,11 @@ const config = {
 const userGroups = ['$global'];
 let io;
 
-var pleasureApiPluginSocketIo = {
+var apiPluginSocketIo = {
   name: 'io',
   config,
   prepare ({ pleasureEntityMap, pluginsApi, server, config, getConfig }) {
-    const { debug } = pleasureUtils.getConfig();
+    const { debug } = utils.getConfig();
 
     PleasureEntityMap = pleasureEntityMap;
     jwt = pluginsApi.jwt;
@@ -117,4 +117,4 @@ var pleasureApiPluginSocketIo = {
   }
 };
 
-module.exports = pleasureApiPluginSocketIo;
+module.exports = apiPluginSocketIo;

@@ -1,12 +1,12 @@
 /*!
- * pleasure-api-plugin-socket-io v1.0.0-beta
- * (c) 2018-2019 Martin Rafael Gonzalez <tin@devtin.io>
+ * @pleasure-js/api-plugin-socket-io v1.0.0-beta
+ * (c) 2018-2020 Martin Rafael Gonzalez <tin@devtin.io>
  * Released under the MIT License.
  */
 import socketIo from 'socket.io';
 import castArray from 'lodash/castArray';
 import get from 'lodash/get';
-import { getConfig } from 'pleasure-utils';
+import { getConfig } from '@pleasure-js/utils';
 
 let PleasureEntityMap;
 let jwt;
@@ -20,7 +20,7 @@ const config = {
 const userGroups = ['$global'];
 let io;
 
-var pleasureApiPluginSocketIo = {
+var apiPluginSocketIo = {
   name: 'io',
   config,
   prepare ({ pleasureEntityMap, pluginsApi, server, config, getConfig: getConfig$1 }) {
@@ -113,4 +113,4 @@ var pleasureApiPluginSocketIo = {
   }
 };
 
-export default pleasureApiPluginSocketIo;
+export default apiPluginSocketIo;
